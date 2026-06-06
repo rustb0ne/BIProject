@@ -1,0 +1,6 @@
+logs/
+reports/
+.venv/
+metabase.jar
+__pycache__/
+*.pyc

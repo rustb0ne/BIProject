@@ -1,0 +1,219 @@
+2026-06-06 01:30:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FACT_ORDERS" not found; SQL statement:
+-- ================================================================
+-- 1. EXECUTIVE KPIs
+-- ================================================================
+
+-- Tổng quan doanh thu & đơn hàng
+SELECT
+    COUNT(DISTINCT order_id)                   AS total_orders,
+    COUNT(*)                                   AS total_order_items,
+    ROUND(SUM(price), 2)                       AS total_product_revenue,
+    ROUND(SUM(freight_value), 2)               AS total_freight_revenue,
+    ROUND(SUM(total_revenue), 2)               AS total_revenue,
+    ROUND(AVG(price), 2)                       AS avg_item_price,
+    ROUND(SUM(price) / COUNT(DISTINCT order_id), 2) AS avg_order_value,
+    ROUND(AVG(review_score), 2)                AS avg_review_score,
+    COUNT(DISTINCT customer_key)               AS unique_customers
+FROM fact_orders
+WHERE order_status = 'delivered'; [42102-214]
+2026-06-06 01:30:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FACT_ORDERS" not found; SQL statement:
+-- Metabase:: userID: 1 queryType: native queryHash: c2623df6212c02f7083ced1cd0742ee1bbb58a4335d60ef668f241acd2607b56
+-- ================================================================
+-- 1. EXECUTIVE KPIs
+-- ================================================================
+
+-- Tổng quan doanh thu & đơn hàng
+SELECT
+    COUNT(DISTINCT order_id)                   AS total_orders,
+    COUNT(*)                                   AS total_order_items,
+    ROUND(SUM(price), 2)                       AS total_product_revenue,
+    ROUND(SUM(freight_value), 2)               AS total_freight_revenue,
+    ROUND(SUM(total_revenue), 2)               AS total_revenue,
+    ROUND(AVG(price), 2)                       AS avg_item_price,
+    ROUND(SUM(price) / COUNT(DISTINCT order_id), 2) AS avg_order_value,
+    ROUND(AVG(review_score), 2)                AS avg_review_score,
+    COUNT(DISTINCT customer_key)               AS unique_customers
+FROM fact_orders
+WHERE order_status = 'delivered'; [42102-214]
+2026-06-06 01:31:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FACT_ORDERS" not found; SQL statement:
+-- Metabase:: userID: 1 queryType: MBQL queryHash: 21bd24cd36c846edd7fff2f2ec73edf606692da24830a348768fbd1e02c8ba1c
+SELECT "__mb_source".* FROM (-- ================================================================
+-- 1. EXECUTIVE KPIs
+-- ================================================================
+
+-- Tổng quan doanh thu & đơn hàng
+SELECT
+    COUNT(DISTINCT order_id)                   AS total_orders,
+    COUNT(*)                                   AS total_order_items,
+    ROUND(SUM(price), 2)                       AS total_product_revenue,
+    ROUND(SUM(freight_value), 2)               AS total_freight_revenue,
+    ROUND(SUM(total_revenue), 2)               AS total_revenue,
+    ROUND(AVG(price), 2)                       AS avg_item_price,
+    ROUND(SUM(price) / COUNT(DISTINCT order_id), 2) AS avg_order_value,
+    ROUND(AVG(review_score), 2)                AS avg_review_score,
+    COUNT(DISTINCT customer_key)               AS unique_customers
+FROM fact_orders
+WHERE order_status = 'delivered') AS "__mb_source" LIMIT 2000 [42102-214]
+2026-06-06 01:31:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FACT_ORDERS" not found; SQL statement:
+-- Metabase:: userID: 1 queryType: native queryHash: c2623df6212c02f7083ced1cd0742ee1bbb58a4335d60ef668f241acd2607b56
+-- ================================================================
+-- 1. EXECUTIVE KPIs
+-- ================================================================
+
+-- Tổng quan doanh thu & đơn hàng
+SELECT
+    COUNT(DISTINCT order_id)                   AS total_orders,
+    COUNT(*)                                   AS total_order_items,
+    ROUND(SUM(price), 2)                       AS total_product_revenue,
+    ROUND(SUM(freight_value), 2)               AS total_freight_revenue,
+    ROUND(SUM(total_revenue), 2)               AS total_revenue,
+    ROUND(AVG(price), 2)                       AS avg_item_price,
+    ROUND(SUM(price) / COUNT(DISTINCT order_id), 2) AS avg_order_value,
+    ROUND(AVG(review_score), 2)                AS avg_review_score,
+    COUNT(DISTINCT customer_key)               AS unique_customers
+FROM fact_orders
+WHERE order_status = 'delivered'; [42102-214]
+2026-06-06 01:39:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "-- Metabase:: userID: 1 queryType: native queryHash: a652d405622e26a78f47219f28d2259ffa7345a0215326a3a1f8eae641f90334\000a-- Doanh thu theo tháng\000aSELECT\000a    t.[*]year,\000a    t.month,\000a    t.month_name,\000a    CONCAT(t.year, '-', LPAD(t.month, 2, '0')) AS year_month,\000a    COUNT(DISTINCT f.order_id) AS total_orders,\000a    COUNT(*) AS total_items,\000a    ROUND(SUM(f.price), 2) AS product_revenue,\000a    ROUND(SUM(f.freight_value), 2) AS freight_revenue,\000a    ROUND(SUM(f.total_revenue), 2) AS total_revenue,\000a    ROUND(AVG(f.review_score), 2) AS avg_review_score\000aFROM fact_orders f\000aJOIN dim_time t ON f.purchase_time_key = t.time_key\000aWHERE f.order_status IN ('delivered', 'shipped')\000aGROUP BY t.year, t.month, t.month_name\000aORDER BY t.year, t.month;"; expected "identifier"; SQL statement:
+-- Metabase:: userID: 1 queryType: native queryHash: a652d405622e26a78f47219f28d2259ffa7345a0215326a3a1f8eae641f90334
+-- Doanh thu theo tháng
+SELECT
+    t.year,
+    t.month,
+    t.month_name,
+    CONCAT(t.year, '-', LPAD(t.month, 2, '0')) AS year_month,
+    COUNT(DISTINCT f.order_id) AS total_orders,
+    COUNT(*) AS total_items,
+    ROUND(SUM(f.price), 2) AS product_revenue,
+    ROUND(SUM(f.freight_value), 2) AS freight_revenue,
+    ROUND(SUM(f.total_revenue), 2) AS total_revenue,
+    ROUND(AVG(f.review_score), 2) AS avg_review_score
+FROM fact_orders f
+JOIN dim_time t ON f.purchase_time_key = t.time_key
+WHERE f.order_status IN ('delivered', 'shipped')
+GROUP BY t.year, t.month, t.month_name
+ORDER BY t.year, t.month; [42001-214]
+2026-06-06 01:53:38 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FACT_ORDERS" not found; SQL statement:
+-- Metabase:: userID: 1 queryType: native queryHash: c2623df6212c02f7083ced1cd0742ee1bbb58a4335d60ef668f241acd2607b56
+-- ================================================================
+-- 1. EXECUTIVE KPIs
+-- ================================================================
+
+-- Tổng quan doanh thu & đơn hàng
+SELECT
+    COUNT(DISTINCT order_id)                   AS total_orders,
+    COUNT(*)                                   AS total_order_items,
+    ROUND(SUM(price), 2)                       AS total_product_revenue,
+    ROUND(SUM(freight_value), 2)               AS total_freight_revenue,
+    ROUND(SUM(total_revenue), 2)               AS total_revenue,
+    ROUND(AVG(price), 2)                       AS avg_item_price,
+    ROUND(SUM(price) / COUNT(DISTINCT order_id), 2) AS avg_order_value,
+    ROUND(AVG(review_score), 2)                AS avg_review_score,
+    COUNT(DISTINCT customer_key)               AS unique_customers
+FROM fact_orders
+WHERE order_status = 'delivered'; [42102-214]
+2026-06-06 01:53:55 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FACT_ORDERS" not found; SQL statement:
+-- Metabase:: userID: 1 queryType: native queryHash: c2623df6212c02f7083ced1cd0742ee1bbb58a4335d60ef668f241acd2607b56
+-- ================================================================
+-- 1. EXECUTIVE KPIs
+-- ================================================================
+
+-- Tổng quan doanh thu & đơn hàng
+SELECT
+    COUNT(DISTINCT order_id)                   AS total_orders,
+    COUNT(*)                                   AS total_order_items,
+    ROUND(SUM(price), 2)                       AS total_product_revenue,
+    ROUND(SUM(freight_value), 2)               AS total_freight_revenue,
+    ROUND(SUM(total_revenue), 2)               AS total_revenue,
+    ROUND(AVG(price), 2)                       AS avg_item_price,
+    ROUND(SUM(price) / COUNT(DISTINCT order_id), 2) AS avg_order_value,
+    ROUND(AVG(review_score), 2)                AS avg_review_score,
+    COUNT(DISTINCT customer_key)               AS unique_customers
+FROM fact_orders
+WHERE order_status = 'delivered'; [42102-214]
+2026-06-06 01:54:04 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FACT_ORDERS" not found; SQL statement:
+-- Metabase:: userID: 1 queryType: native queryHash: c2623df6212c02f7083ced1cd0742ee1bbb58a4335d60ef668f241acd2607b56
+-- ================================================================
+-- 1. EXECUTIVE KPIs
+-- ================================================================
+
+-- Tổng quan doanh thu & đơn hàng
+SELECT
+    COUNT(DISTINCT order_id)                   AS total_orders,
+    COUNT(*)                                   AS total_order_items,
+    ROUND(SUM(price), 2)                       AS total_product_revenue,
+    ROUND(SUM(freight_value), 2)               AS total_freight_revenue,
+    ROUND(SUM(total_revenue), 2)               AS total_revenue,
+    ROUND(AVG(price), 2)                       AS avg_item_price,
+    ROUND(SUM(price) / COUNT(DISTINCT order_id), 2) AS avg_order_value,
+    ROUND(AVG(review_score), 2)                AS avg_review_score,
+    COUNT(DISTINCT customer_key)               AS unique_customers
+FROM fact_orders
+WHERE order_status = 'delivered'; [42102-214]
+2026-06-06 01:56:04 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FACT_ORDERS" not found; SQL statement:
+-- Metabase:: userID: 1 queryType: native queryHash: c2623df6212c02f7083ced1cd0742ee1bbb58a4335d60ef668f241acd2607b56
+-- ================================================================
+-- 1. EXECUTIVE KPIs
+-- ================================================================
+
+-- Tổng quan doanh thu & đơn hàng
+SELECT
+    COUNT(DISTINCT order_id)                   AS total_orders,
+    COUNT(*)                                   AS total_order_items,
+    ROUND(SUM(price), 2)                       AS total_product_revenue,
+    ROUND(SUM(freight_value), 2)               AS total_freight_revenue,
+    ROUND(SUM(total_revenue), 2)               AS total_revenue,
+    ROUND(AVG(price), 2)                       AS avg_item_price,
+    ROUND(SUM(price) / COUNT(DISTINCT order_id), 2) AS avg_order_value,
+    ROUND(AVG(review_score), 2)                AS avg_review_score,
+    COUNT(DISTINCT customer_key)               AS unique_customers
+FROM fact_orders
+WHERE order_status = 'delivered'; [42102-214]
+2026-06-06 01:56:24 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FACT_ORDERS" not found; SQL statement:
+-- Metabase:: userID: 1 queryType: native queryHash: c2623df6212c02f7083ced1cd0742ee1bbb58a4335d60ef668f241acd2607b56
+-- ================================================================
+-- 1. EXECUTIVE KPIs
+-- ================================================================
+
+-- Tổng quan doanh thu & đơn hàng
+SELECT
+    COUNT(DISTINCT order_id)                   AS total_orders,
+    COUNT(*)                                   AS total_order_items,
+    ROUND(SUM(price), 2)                       AS total_product_revenue,
+    ROUND(SUM(freight_value), 2)               AS total_freight_revenue,
+    ROUND(SUM(total_revenue), 2)               AS total_revenue,
+    ROUND(AVG(price), 2)                       AS avg_item_price,
+    ROUND(SUM(price) / COUNT(DISTINCT order_id), 2) AS avg_order_value,
+    ROUND(AVG(review_score), 2)                AS avg_review_score,
+    COUNT(DISTINCT customer_key)               AS unique_customers
+FROM fact_orders
+WHERE order_status = 'delivered'; [42102-214]
+2026-06-06 01:56:39 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FACT_ORDERS" not found; SQL statement:
+-- Metabase:: userID: 1 queryType: native queryHash: c2623df6212c02f7083ced1cd0742ee1bbb58a4335d60ef668f241acd2607b56
+-- ================================================================
+-- 1. EXECUTIVE KPIs
+-- ================================================================
+
+-- Tổng quan doanh thu & đơn hàng
+SELECT
+    COUNT(DISTINCT order_id)                   AS total_orders,
+    COUNT(*)                                   AS total_order_items,
+    ROUND(SUM(price), 2)                       AS total_product_revenue,
+    ROUND(SUM(freight_value), 2)               AS total_freight_revenue,
+    ROUND(SUM(total_revenue), 2)               AS total_revenue,
+    ROUND(AVG(price), 2)                       AS avg_item_price,
+    ROUND(SUM(price) / COUNT(DISTINCT order_id), 2) AS avg_order_value,
+    ROUND(AVG(review_score), 2)                AS avg_review_score,
+    COUNT(DISTINCT customer_key)               AS unique_customers
+FROM fact_orders
+WHERE order_status = 'delivered'; [42102-214]
