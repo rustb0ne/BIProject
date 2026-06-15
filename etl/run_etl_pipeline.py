@@ -32,7 +32,7 @@ def print_banner():
 
 
 def run_step(step_num: int, name: str, fn, *args, **kwargs):
-    """Chạy một bước ETL với timing và error handling."""
+    # Chạy một bước ETL với timing và error handling.
     log.info(f"\n{'='*60}")
     log.info(f"  BƯỚC {step_num}: {name}")
     log.info(f"{'='*60}")

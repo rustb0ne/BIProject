@@ -146,7 +146,7 @@ def prepare_staging_dfs(dfs: dict) -> dict:
 
 
 def load_staging(dfs: dict) -> None:
-    """Main function: load tất cả staging tables."""
+    # Main function: load tất cả staging tables.
     log.info("=" * 60)
     log.info("BƯỚC 3: LOAD STAGING")
     log.info("=" * 60)

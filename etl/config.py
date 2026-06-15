@@ -5,7 +5,7 @@ Cấu hình tập trung cho toàn bộ ETL pipeline.
 
 import os
 
-# ─── Database connections ───────────────────────────────────────
+# Database connections
 DB_HOST     = "127.0.0.1"
 DB_PORT     = 3306
 DB_USER     = "root"
@@ -18,14 +18,14 @@ STAGING_URI = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{STA
 DWH_URI     = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DWH_DB}?charset=utf8mb4"
 MYSQL_URI   = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/?charset=utf8mb4"
 
-# ─── File paths ─────────────────────────────────────────────────
+# File paths 
 BASE_DIR      = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RAW_DATA_DIR  = os.path.join(BASE_DIR, "data", "raw")
 PROC_DATA_DIR = os.path.join(BASE_DIR, "data", "processed")
 SQL_DIR       = os.path.join(BASE_DIR, "sql")
 LOG_DIR       = os.path.join(BASE_DIR, "logs")
 
-# ─── Raw files mapping ──────────────────────────────────────────
+# Raw files mapping
 RAW_FILES = {
     "orders":       "olist_orders_dataset.csv",
     "order_items":  "olist_order_items_dataset.csv",
@@ -38,11 +38,11 @@ RAW_FILES = {
     "translation":  "product_category_name_translation.csv",
 }
 
-# ─── ETL settings ───────────────────────────────────────────────
+# ETL settings
 CHUNK_SIZE      = 5000
 GEOLOCATION_SAMPLE_FRAC = 0.2   # sample 20% of 1M geolocation rows
 
-# ─── Brazil state reference ─────────────────────────────────────
+# Brazil state reference
 BRAZIL_STATES = {
     "AC": ("Acre",                "Norte"),
     "AL": ("Alagoas",             "Nordeste"),

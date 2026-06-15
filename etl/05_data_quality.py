@@ -23,8 +23,7 @@ log = get_logger("05_data_quality")
 
 
 class DataQualityChecker:
-    """Lớp thực hiện toàn bộ data quality checks."""
-
+    # Lớp thực hiện toàn bộ data quality checks.
     def __init__(self, dwh_engine, staging_engine):
         self.dwh     = dwh_engine
         self.staging = staging_engine
@@ -284,7 +283,7 @@ class DataQualityChecker:
 
 
 def run_quality_checks() -> bool:
-    """Entry point cho data quality checks."""
+    # Entry point cho data quality checks.
     dwh_engine     = create_engine(DWH_URI,     echo=False)
     staging_engine = create_engine(STAGING_URI, echo=False)
 

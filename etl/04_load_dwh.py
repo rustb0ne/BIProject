@@ -59,7 +59,7 @@ def upsert_table(engine, df: pd.DataFrame, table_name: str,
 
 
 def prepare_dim_time_for_db(df: pd.DataFrame) -> pd.DataFrame:
-    """Convert full_date sang string cho MySQL."""
+    # Convert full_date sang string cho MySQL.
     df = df.copy()
     df["full_date"] = df["full_date"].astype(str)
     df["is_weekend"] = df["is_weekend"].astype(int)
@@ -67,7 +67,7 @@ def prepare_dim_time_for_db(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def prepare_fact_for_db(df: pd.DataFrame) -> pd.DataFrame:
-    """Chuẩn bị fact_orders cho database load."""
+    # Chuẩn bị fact_orders cho database load.
     df = df.copy()
 
     # Convert pandas Int64 (nullable) sang Python int/None
@@ -94,7 +94,7 @@ def prepare_fact_for_db(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def load_dwh(transformed: dict) -> None:
-    """Main function: load tất cả DWH tables theo đúng thứ tự."""
+    # Main function: load tất cả DWH tables theo đúng thứ tự.
     log.info("=" * 60)
     log.info("BƯỚC 4: LOAD DATA WAREHOUSE")
     log.info("=" * 60)

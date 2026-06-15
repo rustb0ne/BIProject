@@ -28,12 +28,12 @@ def _log_step(step: str, before: int, after: int, reason: str = ""):
 
 
 def clean_city_name(series: pd.Series) -> pd.Series:
-    """Chuẩn hóa tên thành phố: lowercase → title case, strip."""
+    # Chuẩn hóa tên thành phố: lowercase → title case, strip.
     return series.astype(str).str.strip().str.lower().str.title()
 
 
 def safe_int(series: pd.Series) -> pd.Series:
-    """Convert float cột sang Int64 (nullable int)."""
+    # Convert float cột sang Int64 (nullable int).
     return series.fillna(0).astype(int)
 
 
@@ -86,7 +86,7 @@ def build_dim_time(orders_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def build_dim_customer(customers_df: pd.DataFrame) -> pd.DataFrame:
-    """Xây dựng dim_customer với surrogate key."""
+    # Xây dựng dim_customer với surrogate key.
     log.info("[dim_customer] Làm sạch dữ liệu khách hàng...")
     df = customers_df.copy()
 
@@ -110,7 +110,7 @@ def build_dim_customer(customers_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def build_dim_product(products_df: pd.DataFrame, translation_df: pd.DataFrame) -> pd.DataFrame:
-    """Xây dựng dim_product với tên category tiếng Anh."""
+    # Xây dựng dim_product với tên category tiếng Anh.
     log.info("[dim_product] Làm sạch dữ liệu sản phẩm...")
     df = products_df.copy()
 
@@ -143,7 +143,7 @@ def build_dim_product(products_df: pd.DataFrame, translation_df: pd.DataFrame) -
 
 
 def build_dim_region() -> pd.DataFrame:
-    """Xây dựng dim_region từ reference data Brazil states."""
+    # Xây dựng dim_region từ reference data Brazil states.
     log.info("[dim_region] Tạo Brazil region dimension...")
     records = []
     for i, (code, (name, macro)) in enumerate(BRAZIL_STATES.items(), 1):
@@ -159,7 +159,7 @@ def build_dim_region() -> pd.DataFrame:
 
 
 def build_dim_seller(sellers_df: pd.DataFrame) -> pd.DataFrame:
-    """Xây dựng dim_seller với surrogate key."""
+    # Xây dựng dim_seller với surrogate key.
     log.info("[dim_seller] Làm sạch dữ liệu người bán...")
     df = sellers_df.copy()
 

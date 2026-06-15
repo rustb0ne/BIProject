@@ -98,7 +98,7 @@ SCHEMAS = {
 
 
 def load_csv(key: str, sample_frac: float = None) -> pd.DataFrame:
-    """Đọc một file CSV với schema đã định nghĩa."""
+    # Đọc một file CSV với schema đã định nghĩa.
     filepath = os.path.join(RAW_DATA_DIR, RAW_FILES[key])
     schema   = SCHEMAS[key]
 
@@ -119,7 +119,7 @@ def load_csv(key: str, sample_frac: float = None) -> pd.DataFrame:
 
 
 def profile_dataframe(name: str, df: pd.DataFrame) -> dict:
-    """Tạo profiling report cho một DataFrame."""
+    # Tạo profiling report cho một DataFrame.
     n_rows   = len(df)
     n_cols   = len(df.columns)
     null_counts = df.isnull().sum()
@@ -158,7 +158,7 @@ def profile_dataframe(name: str, df: pd.DataFrame) -> dict:
 
 
 def print_profile(profile: dict) -> None:
-    """In profiling report đẹp ra console."""
+    # In profiling report đẹp ra console.
     log.info(f"\n{'─'*70}")
     log.info(f"PROFILE: {profile['name'].upper()}")
     log.info(f"Rows: {profile['rows']:,}  |  Cols: {profile['cols']}  |  Duplicates: {profile['duplicates']:,}")
@@ -180,7 +180,7 @@ def print_profile(profile: dict) -> None:
 
 
 def validate_dataframe(name: str, df: pd.DataFrame) -> list[str]:
-    """Thực hiện các kiểm tra validation cơ bản. Trả về list warnings."""
+    # Thực hiện các kiểm tra validation cơ bản. Trả về list warnings.
     warnings = []
 
     # Check empty
