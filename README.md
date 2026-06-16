@@ -139,4 +139,4 @@ java --add-opens java.base/java.nio=ALL-UNNAMED -jar metabase.jar
 
 ## Full Report
 
-See [`report.pdf`](report.pdf) for the complete analysis: dataset profiling, Data Warehouse design rationale, ETL process walkthrough, dashboard screenshots, and business insights.
+See [`BI_Project_Group_09`](BI_Project_Group_09.pdf) for the complete analysis: dataset profiling, Data Warehouse design rationale, ETL process walkthrough, dashboard screenshots, and business insights.
