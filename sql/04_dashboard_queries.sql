@@ -1,9 +1,3 @@
--- ============================================================
---  OLIST BI DASHBOARD -- QUERY COLLECTION
---  Demo-Ready | Catchy | Visual-Optimized
---  Dung cho Metabase (MySQL / olist_dwh)
--- ============================================================
-
 USE olist_dwh;
 
 
@@ -312,6 +306,61 @@ WHERE ca.months_since_first > 0
 GROUP BY ca.cohort_month, cs.cohort_customers, ca.months_since_first
 HAVING ca.cohort_month >= '2017-01'
 ORDER BY ca.cohort_month, ca.months_since_first;
+
+
+-- ----------------------------------------------------------------
+-- [CUS-4B] AVERAGE COHORT RETENTION CURVE
+-- -> Line chart: Tỉ lệ giữ chân trung bình (1 đường duy nhất)
+-- ----------------------------------------------------------------
+WITH first_purchase AS (
+    SELECT
+        c.customer_unique_id,
+        MIN(t.full_date)                              AS cohort_date,
+        DATE_FORMAT(MIN(t.full_date), '%Y-%m')        AS cohort_month
+    FROM fact_orders f
+    JOIN dim_customer c ON f.customer_key = c.customer_key
+    JOIN dim_time t     ON f.purchase_time_key = t.time_key
+    WHERE f.order_status = 'delivered'
+    GROUP BY c.customer_unique_id
+),
+cohort_size AS (
+    SELECT cohort_month, COUNT(DISTINCT customer_unique_id) AS cohort_customers
+    FROM first_purchase
+    GROUP BY cohort_month
+),
+customer_activity AS (
+    SELECT
+        c.customer_unique_id,
+        fp.cohort_month,
+        PERIOD_DIFF(
+            DATE_FORMAT(t.full_date, '%Y%m'),
+            DATE_FORMAT(fp.cohort_date, '%Y%m')
+        )                                             AS months_since_first
+    FROM fact_orders f
+    JOIN dim_customer c  ON f.customer_key = c.customer_key
+    JOIN dim_time t      ON f.purchase_time_key = t.time_key
+    JOIN first_purchase fp ON c.customer_unique_id = fp.customer_unique_id
+    WHERE f.order_status = 'delivered'
+),
+retention_matrix AS (
+    SELECT
+        ca.cohort_month,
+        cs.cohort_customers                               AS cohort_size,
+        ca.months_since_first                             AS month_number,
+        COUNT(DISTINCT ca.customer_unique_id)             AS active_customers,
+        (100.0 * COUNT(DISTINCT ca.customer_unique_id) / cs.cohort_customers) AS retention_rate_pct
+    FROM customer_activity ca
+    JOIN cohort_size cs ON ca.cohort_month = cs.cohort_month
+    WHERE ca.months_since_first > 0
+    GROUP BY ca.cohort_month, cs.cohort_customers, ca.months_since_first
+    HAVING ca.cohort_month >= '2017-01'
+)
+SELECT
+    month_number,
+    ROUND(AVG(retention_rate_pct), 2) AS avg_retention_rate_pct
+FROM retention_matrix
+GROUP BY month_number
+ORDER BY month_number;
 
 
 -- ----------------------------------------------------------------
