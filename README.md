@@ -85,10 +85,6 @@ CSV Files (9 files)
 
 ## Getting Started
 
-> **Estimated total setup time: ~15 minutes** (excluding dataset download)
-
----
-
 ### Prerequisites
 
 Ensure the following software is installed before proceeding:
