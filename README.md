@@ -160,12 +160,11 @@ mysql -u root -p -e "SELECT VERSION();"
 
 ---
 
-### Step 4 - Download the Dataset
+### Step 4 - Verify the Dataset
 
-1. Go to: https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
-2. Click **Download** (requires a free Kaggle account)
-3. Extract the ZIP file
-4. Copy all **9 CSV files** into the `data/raw/` directory:
+> The dataset is already included in this repository - no download required.
+
+All 9 CSV files are pre-placed in `data/raw/`. Simply confirm they are present:
 
 ```
 data/raw/
@@ -180,7 +179,7 @@ data/raw/
 └── product_category_name_translation.csv
 ```
 
-> ⚠️ The file names must exactly match the list above. The pipeline will raise a `FileNotFoundError` if any file is missing or misnamed.
+> The file names must exactly match the list above. The pipeline will raise a `FileNotFoundError` if any file is missing or misnamed.
 
 ---
 
